@@ -63,6 +63,11 @@ class WellsController < ApplicationController
     end
   end
 
+  def import
+    Well.import(params[:file])
+    redirect_to root_path, notice: "Stages Imported"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_well

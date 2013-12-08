@@ -4,7 +4,8 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+    @well = Well.find(params[:well_id])
+    @reports = @well.reports.all
   end
 
   # GET /reports/1
@@ -14,7 +15,8 @@ class ReportsController < ApplicationController
 
   # GET /reports/new
   def new
-    @report = Report.new
+    @well = Well.find(params[:well_id])
+    @report = @well.reports.new
   end
 
   # GET /reports/1/edit
@@ -69,6 +71,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:well_name, :properties)
+      params.require(:report).permit(:well_id)
     end
 end

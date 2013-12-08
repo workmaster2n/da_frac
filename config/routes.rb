@@ -1,7 +1,7 @@
 DaFrack::Application.routes.draw do
-  resources :wells
-
-  resources :reports
+  resources :wells do
+    resources :reports, shallow: true
+  end
 
   get "home/index"
   devise_for :users

@@ -1,8 +1,9 @@
-= simple_form_for(@stage) do |f|
+= simple_form_for([@well, @stage]) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :well_id
+    = f.association :well
+    = f.input :number
     = f.input :frac_date
     = f.input :gpi
     = f.input :gpi2

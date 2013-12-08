@@ -131,7 +131,8 @@ CREATE TABLE stages (
     stage_length integer,
     shots integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    number integer
 );
 
 
@@ -375,3 +376,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131208162013');
 INSERT INTO schema_migrations (version) VALUES ('20131208162118');
 
 INSERT INTO schema_migrations (version) VALUES ('20131208164916');
+
+INSERT INTO schema_migrations (version) VALUES ('20131208174957');

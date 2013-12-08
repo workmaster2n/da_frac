@@ -4,7 +4,8 @@ class StagesController < ApplicationController
   # GET /stages
   # GET /stages.json
   def index
-    @stages = Stage.all
+    @well = Well.find(params[:well_id])
+    @stages = @well.stages.all
   end
 
   # GET /stages/1
@@ -14,7 +15,8 @@ class StagesController < ApplicationController
 
   # GET /stages/new
   def new
-    @stage = Stage.new
+    @well = Well.find(params[:well_id])
+    @stage = @well.stages.new
   end
 
   # GET /stages/1/edit
@@ -69,6 +71,6 @@ class StagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stage_params
-      params.require(:stage).permit(:well_id, :frac_date, :gpi, :gpi2, :top_perf, :bottom_perf, :stage_length, :shots)
+      params.require(:stage).permit(:well_id, :number, :frac_date, :gpi, :gpi2, :top_perf, :bottom_perf, :stage_length, :shots)
     end
 end

@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-DaFrack::Application.config.secret_key_base = '116dedb7a89d8f398d039d19f24563e1a3eea523aaa2c140514021cb2aef5551dbc872b5cbf99daed680c8f31e4b5d0a266054bf6b56ac68d68bfb4c4d298510'
+DaFrack::Application.config.secret_key_base = 'fbd508736598c2a2c90c8db6e09f414b6e51d4d4791b431896f95531e6085119ad9acc26a73461c62e54b6ae13d79c5cd7eb7494dfe049022ad7ca801ea42ac0'

@@ -49,10 +49,9 @@ SET default_with_oids = false;
 
 CREATE TABLE reports (
     id integer NOT NULL,
-    well_name character varying(255),
-    properties hstore,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    well_id integer
 );
 
 
@@ -169,6 +168,38 @@ CREATE TABLE users_roles (
 
 
 --
+-- Name: wells; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE wells (
+    id integer NOT NULL,
+    name character varying(255),
+    start_date date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: wells_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE wells_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wells_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE wells_id_seq OWNED BY wells.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -187,6 +218,13 @@ ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regcl
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY wells ALTER COLUMN id SET DEFAULT nextval('wells_id_seq'::regclass);
 
 
 --
@@ -211,6 +249,14 @@ ALTER TABLE ONLY roles
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wells_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY wells
+    ADD CONSTRAINT wells_pkey PRIMARY KEY (id);
 
 
 --
@@ -270,3 +316,7 @@ INSERT INTO schema_migrations (version) VALUES ('20131208031612');
 INSERT INTO schema_migrations (version) VALUES ('20131208043141');
 
 INSERT INTO schema_migrations (version) VALUES ('20131208043408');
+
+INSERT INTO schema_migrations (version) VALUES ('20131208162013');
+
+INSERT INTO schema_migrations (version) VALUES ('20131208162118');

@@ -1,0 +1,21 @@
+%h1 Listing wells
+
+%table
+  %tr
+    %th Name
+    %th Start date
+    %th
+    %th
+    %th
+
+  - @wells.each do |well|
+    %tr
+      %td= well.name
+      %td= well.start_date
+      %td= link_to 'Show', well
+      %td= link_to 'Edit', edit_well_path(well)
+      %td= link_to 'Destroy', well, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Well', new_well_path

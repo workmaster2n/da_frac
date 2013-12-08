@@ -1,8 +1,9 @@
-= simple_form_for(@report) do |f|
+= simple_form_for(@well) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.association :well
+    = f.input :name
+    = f.input :start_date
 
   .form-actions
     = f.button :submit

@@ -1,4 +1,6 @@
 DaFrack::Application.routes.draw do
+  resources :wells
+
   resources :reports
 
   get "home/index"

@@ -1,4 +1,7 @@
 - # add navigation links to this file
+- if can? :read, Report
+  %li= link_to 'Reports', reports_path
+
 - if user_signed_in?
   %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
 - else
@@ -9,4 +12,4 @@
 - else
   %li= link_to 'Sign up', new_user_registration_path
 
-- if user.can
+

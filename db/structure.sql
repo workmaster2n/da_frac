@@ -50,7 +50,7 @@ SET default_with_oids = false;
 CREATE TABLE reports (
     id integer NOT NULL,
     well_name character varying(255),
-    attributes hstore,
+    properties hstore,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );

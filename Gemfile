@@ -34,4 +34,3 @@ group :test do
   gem 'email_spec'
 end
 
-gem 'activerecord-postgres-hstore'

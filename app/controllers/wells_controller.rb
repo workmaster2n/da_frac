@@ -1,5 +1,7 @@
 class WellsController < ApplicationController
   before_action :set_well, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+
 
   # GET /wells
   # GET /wells.json

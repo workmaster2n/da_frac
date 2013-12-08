@@ -1,0 +1,15 @@
+= simple_form_for(@stage) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :well_id
+    = f.input :frac_date
+    = f.input :gpi
+    = f.input :gpi2
+    = f.input :top_perf
+    = f.input :bottom_perf
+    = f.input :stage_length
+    = f.input :shots
+
+  .form-actions
+    = f.button :submit

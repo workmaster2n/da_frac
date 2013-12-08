@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Well:
+  = @stage.well_id
+%p
+  %b Frac date:
+  = @stage.frac_date
+%p
+  %b Gpi:
+  = @stage.gpi
+%p
+  %b Gpi2:
+  = @stage.gpi2
+%p
+  %b Top perf:
+  = @stage.top_perf
+%p
+  %b Bottom perf:
+  = @stage.bottom_perf
+%p
+  %b Stage length:
+  = @stage.stage_length
+%p
+  %b Shots:
+  = @stage.shots
+
+= link_to 'Edit', edit_stage_path(@stage)
+\|
+= link_to 'Back', stages_path

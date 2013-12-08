@@ -1,0 +1,33 @@
+%h1 Listing stages
+
+%table
+  %tr
+    %th Well
+    %th Frac date
+    %th Gpi
+    %th Gpi2
+    %th Top perf
+    %th Bottom perf
+    %th Stage length
+    %th Shots
+    %th
+    %th
+    %th
+
+  - @stages.each do |stage|
+    %tr
+      %td= stage.well_id
+      %td= stage.frac_date
+      %td= stage.gpi
+      %td= stage.gpi2
+      %td= stage.top_perf
+      %td= stage.bottom_perf
+      %td= stage.stage_length
+      %td= stage.shots
+      %td= link_to 'Show', stage
+      %td= link_to 'Edit', edit_stage_path(stage)
+      %td= link_to 'Destroy', stage, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Stage', new_stage_path

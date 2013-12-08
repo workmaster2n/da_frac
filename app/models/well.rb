@@ -1,3 +1,3 @@
 class Well < ActiveRecord::Base
-  has_many :reports
+  has_many :stages
 end

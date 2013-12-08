@@ -117,6 +117,44 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: stages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE stages (
+    id integer NOT NULL,
+    well_id integer,
+    frac_date date,
+    gpi integer,
+    gpi2 integer,
+    top_perf integer,
+    bottom_perf integer,
+    stage_length integer,
+    shots integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: stages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE stages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: stages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE stages_id_seq OWNED BY stages.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -217,6 +255,13 @@ ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY stages ALTER COLUMN id SET DEFAULT nextval('stages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -241,6 +286,14 @@ ALTER TABLE ONLY reports
 
 ALTER TABLE ONLY roles
     ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: stages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY stages
+    ADD CONSTRAINT stages_pkey PRIMARY KEY (id);
 
 
 --
@@ -320,3 +373,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131208043408');
 INSERT INTO schema_migrations (version) VALUES ('20131208162013');
 
 INSERT INTO schema_migrations (version) VALUES ('20131208162118');
+
+INSERT INTO schema_migrations (version) VALUES ('20131208164916');

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require qtip/jquery.qtip
 //= require bootstrap
 //= require turbolinks
 //= require_tree .

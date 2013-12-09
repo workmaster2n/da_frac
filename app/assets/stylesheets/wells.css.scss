@@ -3,6 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #canvas_container{
   width: 500px;
+  height: 200px;
   border: 1px solid #aaa;
   overflow:scroll;
+  position: relative;
+}
+.stage_box{
+  position: absolute;
+  height: 100px;
+  top: 50px;
+  border: 1px solid #aaa;
 }

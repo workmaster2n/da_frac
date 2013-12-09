@@ -3,16 +3,20 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 ready =  ->
   if $(".wells.show").length == 1
+    fin = ->
+      alert "in"
+    fout = ->
+      alert "out"
     stages = $("#canvas_container").data("stages")
     depth = 100
     for stage in stages
       depth += stage.stage_length
-
-    paper = new Raphael("canvas_container", depth, 200)
     offset = 50
     for stage in stages
-      paper.rect(offset, 50, stage.stage_length, 100)
+      $('<div/>').attr("class", "stage_box").css("left", offset).css("width", stage.stage_length).appendTo("#canvas_container").hover(fin, fout)
       offset += stage.stage_length
+
+
 
 $(document).ready(ready)
 $(document).on("page:load", ready)

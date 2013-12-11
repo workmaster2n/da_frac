@@ -12,6 +12,9 @@ class WellsController < ApplicationController
   # GET /wells/1
   # GET /wells/1.json
   def show
+    @wells = Well.includes(:stages).map do |well|
+      {stages: well.stages}
+    end
   end
 
   # GET /wells/new

@@ -7,7 +7,7 @@
   %b Start date:
   = @well.start_date
 
-#canvas_container{data: {stages: @well.stages.to_json}}
+#canvas_container{data: {stages: @well.stages.to_json, wells: @wells.to_json}}
 
 = link_to 'Edit', edit_well_path(@well)
 \|

@@ -11,6 +11,8 @@
 .stage_box{
   position: absolute;
   height: 100px;
-  top: 50px;
   border: 1px solid #aaa;
+}
+.stage_box:hover{
+  opacity: 0.3;
 }

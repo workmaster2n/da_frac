@@ -9,6 +9,7 @@
     %th Bottom perf
     %th Stage length
     %th Shots
+    %th Number
     %th
     %th
     %th
@@ -22,6 +23,7 @@
       %td= stage.bottom_perf
       %td= stage.stage_length
       %td= stage.shots
+      %td= stage.number
       %td= link_to 'Show', stage, class: "btn btn-primary"
       %td= link_to 'Edit', edit_stage_path(stage), class: "btn btn-info"
       %td= link_to 'Destroy', stage, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"

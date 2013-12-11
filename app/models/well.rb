@@ -11,7 +11,7 @@
 
 class Well < ActiveRecord::Base
   has_many :stages
-  require 'CSV'
+  require 'csv'
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|

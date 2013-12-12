@@ -20,6 +20,8 @@
 
 %br
 
+#canvas_container{data: {wells: @wells.to_json}}
+
 %h3 Import Wells
 = form_tag import_wells_path, multipart: true do
   = file_field_tag :file

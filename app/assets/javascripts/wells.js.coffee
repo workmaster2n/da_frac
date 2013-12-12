@@ -2,8 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 ready =  ->
-  if $(".wells.show").length == 1
-    stages = $("#canvas_container").data("stages")
+  if $("body.wells.index").length == 1
     wells = $("#canvas_container").data("wells")
     colors = ["red", "blue", "green", "orange", "pink", "teal"]
     vertical_count = 0
@@ -16,7 +15,7 @@ ready =  ->
         thing.qtip
           content:
             text: "top perf: #{stage.top_perf}, bottom perf: #{stage.bottom_perf}"
-            title: "Stage: #{stage.number}"
+            title: "#{well.name}  (Stage: #{stage.number})"
           position:
             my: "top center"
             at: "top center"

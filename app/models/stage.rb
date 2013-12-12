@@ -18,4 +18,12 @@
 
 class Stage < ActiveRecord::Base
   belongs_to :well
+
+  def self.common_attributes(stages)
+    attributes = stages.map do |stage|
+      stage.attributes.keys
+    end
+
+    attributes.inject(:'&')
+  end
 end

@@ -27,4 +27,12 @@ class Well < ActiveRecord::Base
       stage ? stage.update_attributes(stage_hash) : well.stages.create!(stage_hash)
     end
   end
+
+  def self.common_attributes(wells)
+    attributes = wells.map do |well|
+      Stage.common_attributes(well.stages)
+    end
+
+    attributes.inject(:'&')
+  end
 end

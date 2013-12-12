@@ -11,7 +11,13 @@ ready =  ->
       offset = 50
       count = 1
       for stage in stages
-        thing = $('<div/>').attr("class", "stage_box").css("top", vertical_count*100 + ((vertical_count-1)*10)+20).css("left", offset).css("width", stage.stage_length).css("background-color", colors[count%colors.length]).appendTo("#canvas_container")
+        thing = $('<div/>').attr("class", "stage_box")
+        .css("top", vertical_count*100 + ((vertical_count-1)*10)+20)
+        .css("left", offset).css("width", stage.stage_length)
+        .css("background-color", colors[count%colors.length])
+        .data("stage", stage)
+        .appendTo("#canvas_container")
+        info_box = $('<div/>').html("GPI: #{stage.gpi}</br>GPI2: #{stage.gpi2}").css("background-color", "grey").appendTo(thing)
         thing.qtip
           content:
             text: "top perf: #{stage.top_perf}, bottom perf: #{stage.bottom_perf}"
@@ -20,12 +26,23 @@ ready =  ->
             my: "top center"
             at: "top center"
             target: $("#canvas_container")
-
         offset += stage.stage_length
         count += 1
       vertical_count += 1
 
 
 
+
 $(document).ready(ready)
 $(document).on("page:load", ready)
+$(document).on "change", ".attribute_check_box",()->
+#  attr = $(this).val()
+  selected_attr = []
+  $(".attribute_check_box:checked").each ()->
+    selected_attr.push($(this).val())
+  $(".stage_box").each ()->
+    stage_box = $(this)
+    text = ""
+    $(selected_attr).each (index, value) ->
+      text = text + "#{value}: " + stage_box.data("stage")[value] + ", "
+    $(this).html($("<div/>").html(text))

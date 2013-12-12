@@ -20,6 +20,10 @@
 
 %br
 
+- @attributes.each do |attribute|
+  = check_box_tag attribute, attribute, false, {class: "attribute_check_box"}
+  = attribute
+
 #canvas_container{data: {wells: @wells.to_json}}
 
 %h3 Import Wells

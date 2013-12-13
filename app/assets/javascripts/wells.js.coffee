@@ -30,6 +30,15 @@ ready =  ->
         count += 1
       vertical_count += 1
 
+  $("#slider-range").slider
+    range: true
+    min: 0
+    max: 500
+    values: [75, 300]
+    slide: (event, ui) ->
+      $("#amount").val "$" + ui.values[0] + " - $" + ui.values[1]
+
+  $("#amount").val "$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1)
 
 
 
@@ -44,5 +53,5 @@ $(document).on "change", ".attribute_check_box",()->
     stage_box = $(this)
     text = ""
     $(selected_attr).each (index, value) ->
-      text = text + "#{value}: " + stage_box.data("stage")[value] + ", "
-    $(this).html($("<div/>").html(text))
+      text = text + "#{value}: " + stage_box.data("stage")[value] + "</br> "
+    $(this).html($("<div/>").html(text).addClass("stage_box_info"))

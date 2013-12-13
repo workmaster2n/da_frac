@@ -20,6 +20,9 @@
 
 %br
 
+%label{for: "amount"} Price range:
+%input#amount{style: "border:0; color:#f6931f; font-weight:bold;", type: "text"}
+#slider-range
 - @attributes.each do |attribute|
   = check_box_tag attribute, attribute, false, {class: "attribute_check_box"}
   = attribute

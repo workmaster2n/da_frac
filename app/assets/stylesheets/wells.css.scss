@@ -12,7 +12,11 @@
   position: absolute;
   height: 100px;
   border: 1px solid #aaa;
+  padding: 10px;
 }
 .stage_box:hover{
   opacity: 0.3;
+}
+.stage_box_info{
+  background-color: lightgrey;
 }

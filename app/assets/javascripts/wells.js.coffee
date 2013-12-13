@@ -6,11 +6,17 @@ ready =  ->
     wells = $("#canvas_container").data("wells")
     colors = ["red", "blue", "green", "orange", "pink", "teal"]
     vertical_count = 0
+    lowest_gpi = 1000000000
+    highest_gpi = 0
     for well in wells
       stages = well.stages
       offset = 50
       count = 1
       for stage in stages
+        if stage.gpi<lowest_gpi
+          lowest_gpi = stage.gpi
+        if stage.gpi > highest_gpi
+          highest_gpi = stage.gpi
         thing = $('<div/>').attr("class", "stage_box")
         .css("top", vertical_count*100 + ((vertical_count-1)*10)+20)
         .css("left", offset).css("width", stage.stage_length)
@@ -30,15 +36,23 @@ ready =  ->
         count += 1
       vertical_count += 1
 
-  $("#slider-range").slider
-    range: true
-    min: 0
-    max: 500
-    values: [75, 300]
-    slide: (event, ui) ->
-      $("#amount").val "$" + ui.values[0] + " - $" + ui.values[1]
+    update_stage_boxes = (low, high) ->
+      $(".stage_box").each ()->
+        stage_box = $(this)
+        if stage_box.data("stage")["gpi"] < low or stage_box.data("stage")["gpi"] > high
+          $(this).css({opacity: .25})
+        else
+          $(this).css({opacity: 1})
+    $("#slider-range").slider
+      range: true
+      min: lowest_gpi
+      max: highest_gpi
+      values: [highest_gpi*.25, highest_gpi*.75]
+      slide: (event, ui) ->
+        $("#amount").val ui.values[0] + " - " + ui.values[1]
+        update_stage_boxes ui.values[0], ui.values[1]
 
-  $("#amount").val "$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1)
+    $("#amount").val $("#slider-range").slider("values", 0) + " - " + $("#slider-range").slider("values", 1)
 
 
 

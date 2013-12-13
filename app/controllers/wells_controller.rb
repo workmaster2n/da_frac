@@ -7,7 +7,7 @@ class WellsController < ApplicationController
   # GET /wells.json
   def index
     @wells = Well.all
-    @attributes = Well.common_attributes(@wells)
+    @attributes = Well.common_attributes(@wells) || []
   end
 
   # GET /wells/1

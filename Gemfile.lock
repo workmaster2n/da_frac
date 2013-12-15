@@ -79,6 +79,9 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     haml (4.1.0.alpha.2)
       tilt
     haml-rails (0.5.2)
@@ -217,6 +220,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   figaro
+  gon
   haml-rails
   html2haml
   hub

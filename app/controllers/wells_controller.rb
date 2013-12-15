@@ -8,6 +8,8 @@ class WellsController < ApplicationController
   # GET /wells.json
   def index
     @wells = Well.all
+    gon.lowest_gpi = Stage.order("gpi ASC").pluck("gpi").first
+    gon.highest_gpi = Stage.order("gpi DESC").pluck("gpi").first
     @attributes = Well.common_attributes(@wells) || []
   end
 

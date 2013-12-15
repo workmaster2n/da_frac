@@ -26,4 +26,6 @@ class Stage < ActiveRecord::Base
 
     attributes.inject(:'&')
   end
+
+
 end

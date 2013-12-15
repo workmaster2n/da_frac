@@ -19,9 +19,10 @@ set_up_tool_tips = ->
 ready =  ->
   if $("body.wells.index").length == 1
     set_up_tool_tips()
-    lowest_gpi =
+    lowest_gpi = gon.lowest_gpi
+    highest_gpi = gon.highest_gpi
     update_stage_boxes = (low, high) ->
-      $(".stage_box").each ()->
+      $(".box").each ()->
         stage_box = $(this)
         if stage_box.data("stage")["gpi"] < low or stage_box.data("stage")["gpi"] > high
           $(this).css({opacity: .25})

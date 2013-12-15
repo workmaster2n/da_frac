@@ -27,11 +27,28 @@
   = check_box_tag attribute, attribute, false, {class: "attribute_check_box"}
   = attribute
 
+- colors = %w[red blue green orange teal pink yellow]
+
+- @wells.each do |well|
+  %h3= well.name
+  .row.well_info_box
+    .col-md-12
+      - well.stages.each_with_index do |stage, index|
+        .box{style: "width:#{stage.stage_length}px; background-color:#{colors[index%colors.length]}",
+          data: {stage: stage.to_json, well: well.to_json}}
+          .stage_box_info
+
+%button#zoom_in Zoom In
+%button#zoom_out Zoom Out
+
 #canvas_container{data: {wells: @wells.to_json}}
 
 %h3 Import Wells
 = form_tag import_wells_path, multipart: true do
   = file_field_tag :file
   = submit_tag "Import CSV"
+
+
+
 
 = link_to 'New Well', new_well_path

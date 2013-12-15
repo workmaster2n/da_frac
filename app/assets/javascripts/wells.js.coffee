@@ -1,41 +1,25 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+zoom_level = 1
+
+set_up_tool_tips = ->
+  $(".box").each ->
+    stage = $(this).data("stage")
+    well = $(this).data("well")
+    $(this).qtip
+      content:
+        text: "top perf: #{stage.top_perf}, bottom perf: #{stage.bottom_perf}"
+        title: "#{well.name}  (Stage: #{stage.number})"
+        position:
+          my: "top center"
+          at: "top center"
+
+
 ready =  ->
   if $("body.wells.index").length == 1
-    wells = $("#canvas_container").data("wells")
-    colors = ["red", "blue", "green", "orange", "pink", "teal"]
-    vertical_count = 0
-    lowest_gpi = 1000000000
-    highest_gpi = 0
-    for well in wells
-      stages = well.stages
-      offset = 50
-      count = 1
-      for stage in stages
-        if stage.gpi<lowest_gpi
-          lowest_gpi = stage.gpi
-        if stage.gpi > highest_gpi
-          highest_gpi = stage.gpi
-        thing = $('<div/>').attr("class", "stage_box")
-        .css("top", vertical_count*100 + ((vertical_count-1)*10)+20)
-        .css("left", offset).css("width", stage.stage_length)
-        .css("background-color", colors[count%colors.length])
-        .data("stage", stage)
-        .appendTo("#canvas_container")
-        info_box = $('<div/>').html("GPI: #{stage.gpi}</br>GPI2: #{stage.gpi2}").css("background-color", "grey").appendTo(thing)
-        thing.qtip
-          content:
-            text: "top perf: #{stage.top_perf}, bottom perf: #{stage.bottom_perf}"
-            title: "#{well.name}  (Stage: #{stage.number})"
-          position:
-            my: "top center"
-            at: "top center"
-            target: $("#canvas_container")
-        offset += stage.stage_length
-        count += 1
-      vertical_count += 1
-
+    set_up_tool_tips()
+    lowest_gpi =
     update_stage_boxes = (low, high) ->
       $(".stage_box").each ()->
         stage_box = $(this)
@@ -63,9 +47,21 @@ $(document).on "change", ".attribute_check_box",()->
   selected_attr = []
   $(".attribute_check_box:checked").each ()->
     selected_attr.push($(this).val())
-  $(".stage_box").each ()->
+  $(".box").each ()->
     stage_box = $(this)
     text = ""
     $(selected_attr).each (index, value) ->
       text = text + "#{value}: " + stage_box.data("stage")[value] + "</br> "
     $(this).html($("<div/>").html(text).addClass("stage_box_info"))
+$(document).on "click", "#zoom_in", (e)->
+  e.preventDefault()
+  zoom_level *= 2
+  $(".box").each ->
+    $(this).css("width", $(this).data("stage")["stage_length"] * zoom_level + "px")
+$(document).on "click", "#zoom_out", (e)->
+  e.preventDefault()
+  zoom_level *= 1/2
+  $(".box").each ->
+    $(this).css("width", $(this).data("stage")["stage_length"] * zoom_level + "px")
+
+

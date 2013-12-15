@@ -13,10 +13,6 @@ class Well < ActiveRecord::Base
   has_many :stages
   require 'csv'
 
-  def as_json(options = {})
-    super(include: [:stages])
-  end
-
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       stage_hash = row.to_hash

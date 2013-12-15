@@ -22,7 +22,7 @@ ready =  ->
     lowest_gpi = gon.lowest_gpi
     highest_gpi = gon.highest_gpi
     update_stage_boxes = (low, high) ->
-      $(".box").each ()->
+      $(".stage_box").each ()->
         stage_box = $(this)
         if stage_box.data("stage")["gpi"] < low or stage_box.data("stage")["gpi"] > high
           $(this).css({opacity: .25})
@@ -48,7 +48,7 @@ $(document).on "change", ".attribute_check_box",()->
   selected_attr = []
   $(".attribute_check_box:checked").each ()->
     selected_attr.push($(this).val())
-  $(".box").each ()->
+  $(".stage_box").each ()->
     stage_box = $(this)
     text = ""
     $(selected_attr).each (index, value) ->
@@ -57,12 +57,12 @@ $(document).on "change", ".attribute_check_box",()->
 $(document).on "click", "#zoom_in", (e)->
   e.preventDefault()
   zoom_level *= 2
-  $(".box").each ->
+  $(".stage_box").each ->
     $(this).css("width", $(this).data("stage")["stage_length"] * zoom_level + "px")
 $(document).on "click", "#zoom_out", (e)->
   e.preventDefault()
   zoom_level *= 1/2
-  $(".box").each ->
+  $(".stage_box").each ->
     $(this).css("width", $(this).data("stage")["stage_length"] * zoom_level + "px")
 
 

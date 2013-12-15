@@ -9,7 +9,7 @@ class WellsController < ApplicationController
   def index
     @wells = Well.all
     gon.lowest_gpi = Stage.order("gpi ASC").pluck("gpi").first
-    gon.highest_gpi = Stage.order("gpi DESC").pluck("gpi").first
+    gon.highest_gpi = Stage.where("gpi IS NOT NULL").order("gpi DESC").pluck("gpi").first
     @attributes = Well.common_attributes(@wells) || []
   end
 
@@ -72,7 +72,7 @@ class WellsController < ApplicationController
 
   def import
     Well.import(params[:file])
-    redirect_to root_path, notice: "Stages Imported"
+    redirect_to wells_path, notice: "Stages Imported"
   end
 
   private

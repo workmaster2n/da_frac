@@ -1,16 +1,8 @@
 // Place all the styles related to the Wells controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#canvas_container{
-  width: 95%;
-  height: 300px;
-  border: 1px solid #aaa;
-  overflow:scroll;
-  position: relative;
-}
 .stage_box{
-  position: absolute;
-  height: 100px;
+  display:inline-block;
   border: 1px solid #aaa;
   padding: 10px;
 }
@@ -19,13 +11,6 @@
 }
 .stage_box_info{
   background-color: lightgrey;
-}
-.box{
-  display:inline-block;
-  padding: 10px;
-}
-.box:hover{
-  opacity:0.3;
 }
 .well_info_box{
   margin-top:10px;

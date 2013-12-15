@@ -17,10 +17,10 @@ class Well < ActiveRecord::Base
     CSV.foreach(file.path, headers: true) do |row|
       stage_hash = row.to_hash
       well = Well.find_or_create_by(name: stage_hash["Well Name"])
-      stage = well.stages.where(number: stage_hash["Number"]).first
+      stage = well.stages.where("properties -> 'number' = '#{stage_hash["Number"]}'").first
       properties = {}
       stage_hash.each do |key, value|
-        properties[key.downcase.underscore] = value if key
+        properties[key.downcase.squish.underscore.tr(" ", "_")] = value if key
       end
       stage ? stage.update_attribute(:properties, properties) : well.stages.create!(number: stage_hash["number"], properties: properties)
     end

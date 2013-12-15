@@ -34,7 +34,7 @@
   .row.well_info_box
     .col-md-12
       - well.stages.each_with_index do |stage, index|
-        .stage_box{style: "width:#{stage.stage_length}px; background-color:#{colors[index%colors.length]}",
+        .stage_box{style: "width:#{stage.properties["stage_length"]}px; background-color:#{colors[index%colors.length]}",
           data: {stage: stage.to_json, well: well.to_json}}
           .stage_box_info
 

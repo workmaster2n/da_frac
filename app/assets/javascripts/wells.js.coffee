@@ -15,6 +15,10 @@ set_up_tool_tips = ->
           my: "top center"
           at: "top center"
 
+adjust_width = ->
+  $(".stage_box").each ->
+    $(this).css("width", parseInt($(this).data("stage")["properties"]["stage_length"]) * zoom_level + "px")
+
 
 ready =  ->
   if $("body.wells.index").length == 1
@@ -24,7 +28,7 @@ ready =  ->
     update_stage_boxes = (low, high) ->
       $(".stage_box").each ()->
         stage_box = $(this)
-        if stage_box.data("stage")["gpi"] < low or stage_box.data("stage")["gpi"] > high
+        if parseInt(stage_box.data("stage")["properties"]["gpi"]) < low or parseInt(stage_box.data("stage")["properties"]["gpi"]) > high
           $(this).css({opacity: .25})
         else
           $(this).css({opacity: 1})
@@ -57,12 +61,11 @@ $(document).on "change", ".attribute_check_box",()->
 $(document).on "click", "#zoom_in", (e)->
   e.preventDefault()
   zoom_level *= 2
-  $(".stage_box").each ->
-    $(this).css("width", $(this).data("stage")["stage_length"] * zoom_level + "px")
+  adjust_width()
 $(document).on "click", "#zoom_out", (e)->
   e.preventDefault()
   zoom_level *= 1/2
-  $(".stage_box").each ->
-    $(this).css("width", $(this).data("stage")["stage_length"] * zoom_level + "px")
+  adjust_width()
+
 
 

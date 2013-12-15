@@ -56,7 +56,7 @@ $(document).on "change", ".attribute_check_box",()->
     stage_box = $(this)
     text = ""
     $(selected_attr).each (index, value) ->
-      text = text + "#{value}: " + stage_box.data("stage")[value] + "</br> "
+      text = text + "#{value}: " + stage_box.data("stage").properties[value] + "</br> "
     $(this).html($("<div/>").html(text).addClass("stage_box_info"))
 $(document).on "click", "#zoom_in", (e)->
   e.preventDefault()

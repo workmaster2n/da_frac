@@ -21,7 +21,7 @@ class Stage < ActiveRecord::Base
 
   def self.common_attributes(stages)
     attributes = stages.map do |stage|
-      stage.attributes.keys
+      stage.properties.keys
     end
 
     attributes.inject(:'&')

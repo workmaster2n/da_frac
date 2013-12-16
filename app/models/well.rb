@@ -31,6 +31,6 @@ class Well < ActiveRecord::Base
       Stage.common_attributes(well.stages)
     end
 
-    attributes.inject(:'&')
+    attributes.inject(:'&').sort
   end
 end
